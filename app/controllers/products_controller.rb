@@ -1,6 +1,7 @@
 
 class ProductsController < ApplicationController
 	def index
+		@products = Product.all
 	end
 
 	def new
@@ -10,6 +11,7 @@ class ProductsController < ApplicationController
 
 	def create
 		@product= Product.new(post_params)
+
 		params[:category_ids].each do |category_id|
 			category = Category.find(category_id)
 			@product.categories << category
@@ -26,6 +28,11 @@ class ProductsController < ApplicationController
 
 
 	def update
+	end
+
+	def edit
+		@product=Product.find(params[:id])
+		@categories= Category.all
 	end
 
 	private

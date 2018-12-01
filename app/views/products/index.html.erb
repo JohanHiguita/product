@@ -1,1 +1,26 @@
-<h1>INDEX</h1>
+<div class="container">
+	<h1>Products</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Nombre</th>
+				<th scope="col">Precio</th>
+				<th scope="col">Categorias</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @products.each do |product| %>
+			<tr>
+				<td><%= product.name %></td>
+				<td><%= product.price %> </td>
+				<td><%= product.categories.map{ |x| x.name }.join(", ") %></td>
+				<td>
+					<%= link_to "Editar", edit_product_path(product.id) %>
+					<%= link_to "Eliminar", products_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+				</td>
+			</tr>
+			<% end %>			
+		</tbody>
+	</table>
+</div>
