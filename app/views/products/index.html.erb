@@ -1,5 +1,9 @@
 <div class="container">
-	<h1>Products</h1>
+	<h1>Products</h1><br>
+	<div class="text-right">
+		<%= link_to "Nuevo Producto", new_product_path, class: "btn btn-primary" %>
+
+	</div><br>
 	<table class="table">
 		<thead>
 			<tr>
@@ -17,7 +21,7 @@
 				<td><%= product.categories.map{ |x| x.name }.join(", ") %></td>
 				<td>
 					<%= link_to "Editar", edit_product_path(product.id) %>
-					<%= link_to "Eliminar", products_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+					<%= link_to "Eliminar", product_path(product.id), method: :delete, data: {confirm: "Are you sure?"} %>
 				</td>
 			</tr>
 			<% end %>			
