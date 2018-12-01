@@ -1,3 +1,4 @@
+<% index_categories = @product.categories.map{|x| x.id} %>
 <div class="container">
 	<h1>Nuevo Producto</h1>
 	<%= form_for @product do |f|%>
@@ -9,14 +10,22 @@
 	</div>
 
 		<% for category in @categories %> 
+			<% if @product.new_record?%>
+				<%= check_box_tag 'category_ids[]', category.id %>
+			<% else %>
+			
+				<% if index_categories.include?(category.id) %>
+					<%= check_box_tag 'category_ids[]', category.id, true %>
+				<% else %>
+					<%= check_box_tag 'category_ids[]', category.id %>
+				<% end %>
 	
-		<%= check_box_tag 'category_ids[]', category.id %>  
+			<% end %>
 		<%= category.name %> <br>  
-		<% end %>
-
-	
-	
+		<% end %>	
 	<%= f.submit class: "btn btn-primary" %>
-	
+
 	<% end %>
 </div>
+
+
